@@ -3,6 +3,9 @@ var router = require('./controllers/burgers_controller');
 var app = express();
 var PORT = 8080;
 var connection = require('./config/connection');
+var exphbs = require("express-handlebars");
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 connection.connect(function (err) {
   if (err) throw err;

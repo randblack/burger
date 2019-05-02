@@ -4,10 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Eat Da Burger</title>
-</head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function sendBurger() {
+      let newBurger = $('#newBurger').val();
+      $('#submit').click(function () {
+
+        $.ajax({
+          url: "/insertOne",
+          global: false,
+          type: "POST",
+          data: (newBurger),
+          datatype: "application/json"
+        });
+
+      });
+
+
+      console.log(newBurger);
+    }
+  </script>
+
 
 <body>
   {{{ body }}}
 </body>
 
 </html>
+
+{{!-- require jquery here --}}

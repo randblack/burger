@@ -9,14 +9,14 @@ app.set('view engine', 'handlebars');
 router.get('/', function (req, res) {
   burger.burger.selectAll(function (dataReceivedFromDatabase) {
     console.log(dataReceivedFromDatabase);
-    // res.render("index");
+    res.render("index");
   });
 });
 
-router.get('/', function (req, res) {
-  burger.burger.insertOne(function (dataReceivedFromDatabase) {
+router.post('/insertone', function (req, res) {
+  burger.burger.insertOne(newBurger, function (dataReceivedFromDatabase) {
     console.log(dataReceivedFromDatabase);
-    // res.render("index");
+    res.render("index");
   });
 });
 

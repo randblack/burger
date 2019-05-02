@@ -18,7 +18,6 @@ var burger = {
   //     callback(res);
   //   });
   // }
-
 };
 
 module.exports = {
