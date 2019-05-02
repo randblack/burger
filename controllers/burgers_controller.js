@@ -1,4 +1,35 @@
 var express = require('express');
-var burger = require('burger.js');
+var app = express();
+var burger = require('../models/burger');
+var router = express.Router();
+var exphbs = require("express-handlebars");
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-// Create the router for the app, and export the router at the end of your file.
+router.get('/', function (req, res) {
+  burger.burger.selectAll(function (dataReceivedFromDatabase) {
+    console.log(dataReceivedFromDatabase);
+    // res.render("index");
+  });
+});
+
+router.get('/', function (req, res) {
+  burger.burger.insertOne(function (dataReceivedFromDatabase) {
+    console.log(dataReceivedFromDatabase);
+    // res.render("index");
+  });
+});
+
+// router.get('/', function (req, res) {
+//   burger.burger.updateOne("Beyond Burger", function (dataReceivedFromDatabase) {
+//     console.log(dataReceivedFromDatabase);
+//     res.render("index");
+//   });
+// });
+
+module.exports = {
+  router
+}
+
+// is this where handlebars is required/used? yes
+

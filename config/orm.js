@@ -1,22 +1,37 @@
-var connection = require('connection');
+var connection = require('./connection');
 
-var selectAll = connection.selectAll(function (err) {
-  if (err) throw err;
+var orm = {
+  selectAll: function (table, callback) {
+    var queryString = "SELECT * FROM " + table + ";";
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callback(result);
+    });
+  },
 
-});
+  insertOne: function (itemName, table, column, callback) {
+    var queryString = "INSERT INTO " + table + " (" + column + ") VALUES (" + itemName + ");";
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callback(result);
+    });
+  },
 
-var insertOne = connection.insertOne(function (err) {
-  if (err) throw err;
-
-});
-
-var updateOne = connection.updateOne(function (err) {
-  if (err) throw err;
-
-});
+  // updateOne: function (table, callback) {
+  //   var queryString = "UPDATE " + table + " SET " + column1 + " = '1' WHERE " + column2 + " = " + itemName + ";";
+  //   connection.query(queryString, function (err, result) {
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     callback(result);
+  //   });
+  // }
+};
 
 module.exports = {
-  selectAll,
-  insertOne,
-  updateOne
-}
+  orm
+};

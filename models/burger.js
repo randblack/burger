@@ -1,6 +1,26 @@
-var selectAll = require('selectAll');
-var insertOne = require('insertOne');
-var selectOne = require('selectOne');
+var orm = require('../config/orm');
 
-// inside burger.js, create the code that will call the ORM functions using burger specific input for the ORM.
-// Export at the end of the burger.js file.
+var burger = {
+  selectAll: function (callback) {
+    orm.orm.selectAll("burgers", function (res) {
+      callback(res);
+    });
+  },
+
+  insertOne: function (itemName, callback) {
+    orm.orm.insertOne(itemName, "burgers", "burger_name", function (res) {
+      callback(res);
+    });
+  },
+
+  // updateOne: function (itemName, callback) {
+  //   orm.orm.updateOne(itemName, "burgers", "burger_name", function (res) {
+  //     callback(res);
+  //   });
+  // }
+
+};
+
+module.exports = {
+  burger,
+}
