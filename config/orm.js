@@ -21,15 +21,15 @@ var orm = {
     });
   },
 
-  // updateOne: function (table, callback) {
-  //   var queryString = "UPDATE " + table + " SET " + column1 + " = '1' WHERE " + column2 + " = " + itemName + ";";
-  //   connection.query(queryString, function (err, result) {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     callback(result);
-  //   });
-  // }
+  updateOne: function (itemId, table, column1, column2, callback) {
+    var queryString = "UPDATE " + table + " SET " + column1 + " = '1' WHERE " + column2 + " = '" + itemId + "';";
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callback(result);
+    });
+  }
 };
 
 module.exports = {

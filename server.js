@@ -4,6 +4,9 @@ var app = express();
 var PORT = 8080;
 var connection = require('./config/connection');
 var exphbs = require("express-handlebars");
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 

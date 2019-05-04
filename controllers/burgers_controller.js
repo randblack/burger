@@ -5,31 +5,37 @@ var router = express.Router();
 var exphbs = require("express-handlebars");
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+let uneaten = [];
+let eaten = [];
 
 router.get('/', function (req, res) {
-  burger.burger.selectAll(function (dataReceivedFromDatabase) {
-    console.log(dataReceivedFromDatabase);
-    res.render("index");
+  burger.burger.selectAll(function (data) {
+    // for (i = 0; i < data.length; i++) {
+    //   if (data[i].devoured == 1) {
+    //     uneaten.push(data[i]);
+    //     console.log('uneaten ' + eaten[i]);
+    //   } else {
+    //     eaten.push(data[i]);
+    //   }
+    // }
+    res.render("index", { burgers: data });
   });
 });
 
-router.post('/insertone', function (req, res) {
-  burger.burger.insertOne(newBurger, function (dataReceivedFromDatabase) {
-    console.log(dataReceivedFromDatabase);
-    res.render("index");
+router.post('/add', function (req, res) {
+  var newBurger = req.body.new_burger;
+  burger.burger.insertOne(newBurger, function (data) {
+    res.redirect('/')
   });
 });
 
-// router.get('/', function (req, res) {
-//   burger.burger.updateOne("Beyond Burger", function (dataReceivedFromDatabase) {
-//     console.log(dataReceivedFromDatabase);
-//     res.render("index");
-//   });
-// });
+router.post('/update/:id', function (req, res) {
+  var itemId = req.params.id;
+  burger.burger.updateOne(itemId, function (data) {
+    res.redirect('/')
+  });
+});
 
 module.exports = {
   router
 }
-
-// is this where handlebars is required/used? yes
-

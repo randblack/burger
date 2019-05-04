@@ -1,6 +1,41 @@
+<h1>Eat da Burger</h1>
+
 <div>
-  <input id="newBurger" type="text">
-  <button id="submit" onClick="sendBurger()">
-    Submit Order
-  </button>
+  <form method="POST" action="/add">
+    <input type="text" name="new_burger">
+    <button id="submit" value="Submit">
+      Submit Order
+    </button>
+  </form>
+</div>
+
+<div>
+  <ul>
+    {{#each burgers}}
+    {{#unless this.devoured}}
+    <li>
+      <form action="update/{{this.id}}" method="POST">
+        <label>
+          {{this.id}}. {{this.burger_name}}
+        </label>
+        <button type="submit">Eat</button>
+      </form>
+    </li>
+    {{/unless}}
+    {{/each}}
+  </ul>
+</div>
+
+<div>
+  <ul>
+    {{#each burgers}}
+    {{#if this.devoured}}
+    <li>
+      <p>
+        {{this.burger_name}}
+      </p>
+    </li>
+    {{/if}}
+    {{/each}}
+  </ul>
 </div>
