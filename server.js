@@ -12,7 +12,6 @@ app.set('view engine', 'handlebars');
 
 connection.connect(function (err) {
   if (err) throw err;
-  console.log('mysql connection success')
 });
 
 app.use(router.router);

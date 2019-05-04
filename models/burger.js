@@ -21,5 +21,5 @@ var burger = {
 };
 
 module.exports = {
-  burger,
+  burger
 }

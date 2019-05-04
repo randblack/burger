@@ -10,14 +10,6 @@ let eaten = [];
 
 router.get('/', function (req, res) {
   burger.burger.selectAll(function (data) {
-    // for (i = 0; i < data.length; i++) {
-    //   if (data[i].devoured == 1) {
-    //     uneaten.push(data[i]);
-    //     console.log('uneaten ' + eaten[i]);
-    //   } else {
-    //     eaten.push(data[i]);
-    //   }
-    // }
     res.render("index", { burgers: data });
   });
 });
