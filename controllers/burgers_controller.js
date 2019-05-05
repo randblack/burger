@@ -5,8 +5,6 @@ var router = express.Router();
 var exphbs = require("express-handlebars");
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-let uneaten = [];
-let eaten = [];
 
 router.get('/', function (req, res) {
   burger.burger.selectAll(function (data) {
